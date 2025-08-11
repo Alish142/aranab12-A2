@@ -9,10 +9,33 @@ public class AssignmentTwo {
         System.out.println(coaster);
         System.out.println(visitor);
 
+        new AssignmentTwo().partThree();
+
     }
 
     // placeholders for other parts . 
-        public void partThree(){ }
+    public void partThree(){
+        Employee op = new Employee("Alish", "Ranabhat", 25, "E102", "Ride Operator", true);
+        Ride ride = new Ride("Hyper Coaster", 130, op);
+
+        Visitor v1 = new Visitor("Nehemia", "Shrestha", 19, "T101", false);
+        Visitor v2 = new Visitor("Jason",   "Gurung",   20, "T102", false);
+        Visitor v3 = new Visitor("Tom",     "Lama",     18, "T103", false);
+        Visitor v4 = new Visitor("Sherly",  "Magar",    21, "T104", true);
+        Visitor v5 = new Visitor("Ben",     "KC",       22, "T105", false);
+        Visitor v6 = new Visitor("David",   "Bhandari", 23, "T106", true);
+
+        ride.addVisitorToQueue(v1);
+        ride.addVisitorToQueue(v2);
+        ride.addVisitorToQueue(v3);
+        ride.addVisitorToQueue(v4);
+        ride.addVisitorToQueue(v5);
+        ride.addVisitorToQueue(v6);
+
+        ride.removeVisitorFromQueue();
+        
+        ride.printQueue();
+    }
     public void partFourA(){ }
     public void partFourB(){ }
     public void partFive(){ }
