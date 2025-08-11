@@ -22,7 +22,7 @@ public String getTicketId() { return ticketId; }
 
     @Override
     public String toString() {
-        return "Visitor[" + super.toString() + ", ticketId=" + ticketId + ", fastPass=" + fastPass + "]";
+        return "Visitor [" + super.toString() + ", ticketId = " + ticketId + ", fastPass = " + fastPass + "]";
     }
     
 }

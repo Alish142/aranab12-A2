@@ -1,4 +1,4 @@
-public class Ride {
+public class Ride implements RideInterface {
     private String name;
     private int minHeightCm;   // Took reference from Movie world roller coaster ride 
     private Employee Operator  ;
@@ -28,4 +28,12 @@ public class Ride {
     public String toString() {
         return "Ride[name=" + name + ", minHeightCm=" + minHeightCm + ", Operator =" + Operator  + "]";
     }
+    @Override public boolean addVisitorToQueue(Visitor v) { return false; }
+    @Override public Visitor removeVisitorFromQueue() { return null; }
+    @Override public void printQueue() { }
+    @Override public void runOneCycle() { }
+    @Override public boolean addVisitorToHistory(Visitor v) { return false; }
+    @Override public boolean checkVisitorFromHistory(Visitor v) { return false; }
+    @Override public int numberOfVisitors() { return 0; }
+    @Override public void printRideHistory() { }
 }

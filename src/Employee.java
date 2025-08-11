@@ -28,6 +28,6 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return "Employee[" + super.toString() + ", staffId=" + staffId + ", role=" + role + ", onDuty=" + onDuty + "]";
+        return "Employee[" + super.toString() + ", staffId = " + staffId + ", role = " + role + ", onDuty = " + onDuty + "]";
     }
 }
