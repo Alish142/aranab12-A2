@@ -50,6 +50,11 @@ private final LinkedList<Visitor> history = new LinkedList<>();
         System.out.println("Cannot add: Visitor must have a first and last name.");
         return false;
     }
+
+    if (v.getAge() < 0) {
+        System.out.println("Cannot add: Visitor age cannot be negative.");
+        return false;
+    }
         waiting.offer(v);
         System.out.println("Added to the queue : " + v.getFirstName() + v.getLastName());
         
@@ -97,15 +102,45 @@ public Visitor removeVisitorFromQueue() {
             System.out.println("Cannot add to history: first/last name missing.");
             return false;
         }
+
+        if (v.getAge() < 0) {
+            System.out.println("Cannot add to history: Visitor age cannot be negative.");
+            return false;
+        }
+
         boolean ok = history.add(v);
         System.out.println(ok ? "Added to history: " + v.getFirstName() + " " + v.getLastName()
                               : "Failed to add to history.");
         return ok;
     }
-                      
-    @Override public boolean checkVisitorFromHistory(Visitor v) { return false; }
-    @Override public int numberOfVisitors() { return 0; }
-    @Override public void printRideHistory() { }
+
+    @Override public boolean checkVisitorFromHistory(Visitor v) { 
+        boolean found = history.contains(v);
+        System.out.println("Visitors in history:" + found);
+        return found; }
+
+
+    @Override public int numberOfVisitors() { 
+        int n = history.size();
+        System.out.println("Number of Visitor:" + n);      
+        return n; }
+
+
+        @Override
+        public void printRideHistory() {
+            if (history.isEmpty()) {
+                System.out.println("No visitors in history.");
+                return;
+            }
+            System.out.println("Ride history (old to new), size " + history.size() + ":");
+            Iterator<Visitor> it = history.iterator(); // required by brief
+            int pos = 1;
+            while (it.hasNext()) {
+                Visitor v = it.next();
+                System.out.println(pos++ + ". " + v.getFirstName() + " " + v.getLastName() + " (age " + v.getAge() + ")");
+            }
+        }
+        
 
     @Override public void runOneCycle() { }
 }

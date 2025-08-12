@@ -10,6 +10,7 @@ public class AssignmentTwo {
         System.out.println(visitor);
 
         new AssignmentTwo().partThree();
+        new AssignmentTwo().partFourA();
 
     }
 
@@ -33,10 +34,31 @@ public class AssignmentTwo {
         ride.addVisitorToQueue(v6);
 
         ride.removeVisitorFromQueue();
-        
+
         ride.printQueue();
     }
-    public void partFourA(){ }
+    public void partFourA() {
+        Employee op = new Employee("Alish", "Ranabhat", 25, "E102", "Ride Operator", true);
+        Ride ride = new Ride("Hyper Coaster", 130, op);
+
+        Visitor v1 = new Visitor("Nehemia", "Shrestha", 12, "T201", false);
+        Visitor v2 = new Visitor("Jason",   "Gurung",   20, "T202", false);
+        Visitor v3 = new Visitor("Tom",     "Lama",     18, "T203", false);
+        Visitor v4 = new Visitor("Sherly",  "Magar",    21, "T204", true);
+        Visitor v5 = new Visitor("Ben",     "KC",       22, "T205", false);
+
+        ride.addVisitorToHistory(v1);
+        ride.addVisitorToHistory(v2);
+        ride.addVisitorToHistory(v3);
+        ride.addVisitorToHistory(v4);
+        ride.addVisitorToHistory(v5);
+
+        ride.checkVisitorFromHistory(v3); 
+        //prints counts 
+        ride.numberOfVisitors();  
+       //Use of the iterator      
+        ride.printRideHistory();         
+    }
     public void partFourB(){ }
     public void partFive(){ }
     public void partSix(){ }
