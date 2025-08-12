@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Iterator;
 
 
 public class Ride implements RideInterface {
@@ -8,6 +9,7 @@ public class Ride implements RideInterface {
     private Employee Operator  ;
 
 private final Queue <Visitor> waiting = new LinkedList<>();
+private final LinkedList<Visitor> history = new LinkedList<>();
 
     
 //Default Constructor 
@@ -86,9 +88,24 @@ public Visitor removeVisitorFromQueue() {
 
 
      }
-    @Override public void runOneCycle() { }
-    @Override public boolean addVisitorToHistory(Visitor v) { return false; }
+    
+     @Override
+    public boolean addVisitorToHistory(Visitor v) {
+        if (v == null) { System.out.println("Cannot add to history: Visitor is null."); return false; }
+        if (v.getFirstName() == null || v.getFirstName().trim().isEmpty() ||
+            v.getLastName() == null  || v.getLastName().trim().isEmpty()) {
+            System.out.println("Cannot add to history: first/last name missing.");
+            return false;
+        }
+        boolean ok = history.add(v);
+        System.out.println(ok ? "Added to history: " + v.getFirstName() + " " + v.getLastName()
+                              : "Failed to add to history.");
+        return ok;
+    }
+                      
     @Override public boolean checkVisitorFromHistory(Visitor v) { return false; }
     @Override public int numberOfVisitors() { return 0; }
     @Override public void printRideHistory() { }
+
+    @Override public void runOneCycle() { }
 }
