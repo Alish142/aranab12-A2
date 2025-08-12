@@ -218,9 +218,46 @@ public Visitor removeVisitorFromQueue() {
                 }
             }
         
-            // 4) Increment cycle count and summary
+            //Increment cycle count and summary
             numOfCycles++;
             System.out.println(" Cycle complete. Total cycles run: " + numOfCycles);
             System.out.println("   Queue size now: " + waiting.size() + ", History size now: " + history.size());
+ 
+ 
+        }
+
+
+        //Part 6 
+
+        public void exportRideHistory(String fileName) {
+            if (fileName == null || fileName.trim().isEmpty()) {
+                System.out.println("Export failed: filename is empty.");
+                return;
+            }
+            if (history.isEmpty()) {
+                System.out.println("No visitors in history to export.");
+                return;
+            }
+        
+            java.io.File file = new java.io.File(fileName);
+        
+
+            try (java.io.BufferedWriter bw = new java.io.BufferedWriter(new java.io.FileWriter(file))) {
+               
+                for (Visitor v : history) {
+              
+                    String line = v.getFirstName() + "," +
+                                  v.getLastName()  + "," +
+                                  v.getAge()       + "," +
+                                  v.getTicketId()  + "," +
+                                  v.isFastPass();
+                    bw.write(line);
+                    bw.newLine();
+                }
+                System.out.println("Ride history successfully exported (" + history.size() +
+                                   " visitors) to: " + file.getAbsolutePath());
+            } catch (java.io.IOException e) {
+                System.out.println("Error exporting ride history to \"" + fileName + "\": " + e.getMessage());
+            }
         }
 }

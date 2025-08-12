@@ -13,6 +13,7 @@ public class AssignmentTwo {
         a2.partFourA();
         a2.partFourB();
         a2.partFive();
+        a2.partSix();
     }
 
     // === Part 3 ===
@@ -121,6 +122,22 @@ public class AssignmentTwo {
     }
 
 
-    public void partSix() { }
+  // === Part 6 ===
+public void partSix() {
+    Employee op = new Employee("Alish", "Ranabhat", 25, "E102", "Ride Operator", true);
+    Ride ride = new Ride("Hyper Coaster", 130, op);
+
+    // 5 visiotrs addede to hsitroy 
+    ride.addVisitorToHistory(new Visitor("Nehemia", "Shrestha", 19, "T501", false));
+    ride.addVisitorToHistory(new Visitor("Jason",   "Gurung",   20, "T502", true));
+    ride.addVisitorToHistory(new Visitor("Tom",     "Lama",     18, "T503", false));
+    ride.addVisitorToHistory(new Visitor("Sherly",  "Magar",    21, "T504", true));
+    ride.addVisitorToHistory(new Visitor("Ben",     "KC",       22, "T505", false));
+
+    System.out.println("\n---  Exporting Ride History ---");
+// Exportrs the hsitory data to a csv file 
+    ride.exportRideHistory("ride_history.csv");
+}
+
     public void partSeven() { }
 }
