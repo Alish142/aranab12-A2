@@ -51,12 +51,12 @@ private final LinkedList<Visitor> history = new LinkedList<>();
         return false;
     }
 
-    if (v.getAge() < 0) {
-        System.out.println("Cannot add: Visitor age cannot be negative.");
+    if (v.getAge() <= 0) {
+        System.out.println("Cannot add: Visitor," + v.getFirstName() + " "+"age must be greater than 0.");
         return false;
     }
         waiting.offer(v);
-        System.out.println("Added to the queue : " + v.getFirstName() + v.getLastName());
+        System.out.println("Added to the queue : " + v.getFirstName() + " " + v.getLastName());
         
         return true; }
 
@@ -103,8 +103,8 @@ public Visitor removeVisitorFromQueue() {
             return false;
         }
 
-        if (v.getAge() < 0) {
-            System.out.println("Cannot add to history: Visitor age cannot be negative.");
+        if (v.getAge() <= 0) {
+            System.out.println("Cannot add to history: " + "Visitor," + v.getFirstName() +" "+ "age must be greater than 0.");
             return false;
         }
 

@@ -20,7 +20,7 @@ public class AssignmentTwo {
         Ride ride = new Ride("Hyper Coaster", 130, op);
 
         Visitor v1 = new Visitor("Nehemia", "Shrestha", 19, "T101", false);
-        Visitor v2 = new Visitor("Jason",   "Gurung",   20, "T102", false);
+        Visitor v2 = new Visitor("Jason",   "Gurung",   0, "T102", false);
         Visitor v3 = new Visitor("Tom",     "Lama",     18, "T103", false);
         Visitor v4 = new Visitor("Sherly",  "Magar",    21, "T104", true);
         Visitor v5 = new Visitor("Ben",     "KC",       22, "T105", false);
@@ -41,7 +41,7 @@ public class AssignmentTwo {
         Employee op = new Employee("Alish", "Ranabhat", 25, "E102", "Ride Operator", true);
         Ride ride = new Ride("Hyper Coaster", 130, op);
 
-        Visitor v1 = new Visitor("Nehemia", "Shrestha", 12, "T201", false);
+        Visitor v1 = new Visitor("Nehemia", "Shrestha", 0, "T201", false);
         Visitor v2 = new Visitor("Jason",   "Gurung",   20, "T202", false);
         Visitor v3 = new Visitor("Tom",     "Lama",     18, "T203", false);
         Visitor v4 = new Visitor("Sherly",  "Magar",    21, "T204", true);
