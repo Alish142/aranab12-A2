@@ -176,7 +176,7 @@ public Visitor removeVisitorFromQueue() {
                 return;
             }
             System.out.println("Ride history (old to new), size " + history.size() + ":");
-            Iterator<Visitor> it = history.iterator(); // required by brief
+            Iterator<Visitor> it = history.iterator(); 
             int pos = 1;
             while (it.hasNext()) {
                 Visitor v = it.next();
