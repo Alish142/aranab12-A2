@@ -10,6 +10,12 @@ public class Ride implements RideInterface {
     private int minHeightCm;   // Took reference from Movie world roller coaster ride 
     private Employee Operator  ;
 
+    //For Part 5
+    private int maxRider = 2;
+    private int numOfCycles = 0;
+
+
+
 private final Queue <Visitor> waiting = new LinkedList<>();
 private final LinkedList<Visitor> history = new LinkedList<>();
 
@@ -33,7 +39,32 @@ private final LinkedList<Visitor> history = new LinkedList<>();
     public void setMinHeightCm(int minHeightCm) { this.minHeightCm = minHeightCm; }
 
     public Employee getOperator () { return Operator ; }
-    public void setOperator (Employee Operator ) { this.Operator  = Operator ; }
+    public void setOperator (Employee Operator ) { 
+        this.Operator  = Operator ; 
+
+        if (Operator == null) {
+            System.out.println("Operator unassigned from \"" + name + "\".");
+        } else {
+            System.out.println("Operator assigned: " + Operator.getFirstName() + " " + Operator.getLastName()
+                + " to \"" + name + "\".");
+        }
+    
+    }
+
+
+    // getters and setters for Part 5 
+
+public int getMaxRider() { return maxRider;}
+public void setMaxRider(int maxRider) {
+    if (maxRider < 1) {
+        System.out.println("maxRider must be at least 1. Keeping previous value: " + this.maxRider);
+        return;
+    }
+    this.maxRider = maxRider;
+    System.out.println("maxRider set to: " + this.maxRider);
+}
+
+public int getNumofCycles (){ return numOfCycles;}
 
     @Override
     public String toString() {
@@ -116,11 +147,17 @@ public Visitor removeVisitorFromQueue() {
         return ok;
     }
 
-    @Override public boolean checkVisitorFromHistory(Visitor v) { 
+    @Override
+    public boolean checkVisitorFromHistory(Visitor v) {
         boolean found = history.contains(v);
-        System.out.println("Visitors in history:" + found);
-        return found; }
-
+        if (found) {
+            System.out.println("Visitor found in history: " + v.getFirstName() + " " + v.getLastName());
+        } else {
+            System.out.println("Visitor NOT found in history: " + v.getFirstName() + " " + v.getLastName());
+        }
+        return found;
+    }
+    
 
     @Override public int numberOfVisitors() { 
         int n = history.size();
@@ -148,5 +185,42 @@ public Visitor removeVisitorFromQueue() {
             System.out.println("History sorted using " + comparator.getClass().getSimpleName());
         }
         
-    @Override public void runOneCycle() { }
+        @Override
+        public void runOneCycle() {
+            // Operator check
+            if (getOperator() == null) {
+                System.out.println(" Cannot run: no operator assigned to \"" + name + "\".");
+                return;
+
+            } else {
+                System.out.println(" Operator found: " + getOperator().getFirstName() + " " +
+                           getOperator().getLastName() + " is assigned to \"" + name + "\".");
+            }
+        
+            //Capacity + queue checks
+            if (maxRider < 1) {
+                System.out.println(" Cannot run: maxRider must be at least 1.");
+                return;
+            }
+            if (waiting.isEmpty()) {
+                System.out.println(" Cannot run: queue is empty.");
+                return;
+            }
+        
+            // 
+            int toTake = Math.min(maxRider, waiting.size());
+            System.out.println(" Running one cycle of \"" + name + "\". Capacity: " + maxRider + ", taking: " + toTake);
+        
+            for (int i = 0; i < toTake; i++) {
+                Visitor v = removeVisitorFromQueue();  
+                if (v != null) {
+                    addVisitorToHistory(v);            
+                }
+            }
+        
+            // 4) Increment cycle count and summary
+            numOfCycles++;
+            System.out.println(" Cycle complete. Total cycles run: " + numOfCycles);
+            System.out.println("   Queue size now: " + waiting.size() + ", History size now: " + history.size());
+        }
 }
