@@ -2,6 +2,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Iterator;
 import java.util.Comparator;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Collections;
 
 
@@ -117,7 +121,7 @@ public Visitor removeVisitorFromQueue() {
 
         }
         else {
-            System.out.println("Current queue");
+            System.out.println("Current queue" + waiting.size() + "):");
             int position = 1;
             for (Visitor v : waiting){
                 System.out.println("-" + v.getFirstName()+" " +  v.getLastName());
@@ -161,7 +165,7 @@ public Visitor removeVisitorFromQueue() {
 
     @Override public int numberOfVisitors() { 
         int n = history.size();
-        System.out.println("Number of Visitor:" + n);      
+        System.out.println("Number of Visitor in history:" + n);      
         return n; }
 
 
@@ -181,6 +185,9 @@ public Visitor removeVisitorFromQueue() {
         }
         
         public void sortHistory(java.util.Comparator<Visitor> comparator) {
+            if (history.isEmpty()){
+                System.out.println("Cannot Sort: history is empty.");
+            }
             java.util.Collections.sort(history, comparator);
             System.out.println("History sorted using " + comparator.getClass().getSimpleName());
         }
@@ -260,4 +267,43 @@ public Visitor removeVisitorFromQueue() {
                 System.out.println("Error exporting ride history to \"" + fileName + "\": " + e.getMessage());
             }
         }
+
+       public void importRideHistory(String fileName) {
+    try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+        
+            String[] parts = line.split(",");
+
+            if (parts.length == 5) {
+                String firstName = parts[0];
+                String lastName = parts[1];
+                int age = Integer.parseInt(parts[2]);
+                String ticketId = parts[3];
+                boolean fastPass = Boolean.parseBoolean(parts[4]);
+
+               
+                Visitor v = new Visitor(firstName, lastName, age, ticketId, fastPass);
+
+                
+                addVisitorToHistory(v);
+
+            }
+            else{
+                System.out.println("Skipping line (Wrong data in the file)" + fileName);
+            }
+        }
+        System.out.println("Ride history imported successfully from " + fileName);
+
+    } catch (FileNotFoundException e) {
+        System.err.println("File not found: " + fileName);
+    } catch (IOException e) {
+        System.err.println("Error reading file: " + e.getMessage());
+    } catch (NumberFormatException e) {
+        System.err.println("Invalid data format in file: " + e.getMessage());
+    }
+}
+
+
 }

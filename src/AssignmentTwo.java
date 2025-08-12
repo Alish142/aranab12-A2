@@ -14,6 +14,7 @@ public class AssignmentTwo {
         a2.partFourB();
         a2.partFive();
         a2.partSix();
+        a2.partSeven();
     }
 
     // === Part 3 ===
@@ -128,7 +129,7 @@ public void partSix() {
     Ride ride = new Ride("Hyper Coaster", 130, op);
 
     // 5 visiotrs addede to hsitroy 
-    ride.addVisitorToHistory(new Visitor("Nehemia", "Shrestha", 19, "T501", false));
+    ride.addVisitorToHistory(new Visitor("Nehemia", "Shrestha", 25, "T501", false));
     ride.addVisitorToHistory(new Visitor("Jason",   "Gurung",   20, "T502", true));
     ride.addVisitorToHistory(new Visitor("Tom",     "Lama",     18, "T503", false));
     ride.addVisitorToHistory(new Visitor("Sherly",  "Magar",    21, "T504", true));
@@ -139,5 +140,17 @@ public void partSix() {
     ride.exportRideHistory("ride_history.csv");
 }
 
-    public void partSeven() { }
+public void partSeven() {
+    Ride ride = new Ride("Hyper Coaster", 130, null);
+
+
+    ride.importRideHistory("ride_history.csv");
+
+    System.out.println("\n--- Number of Visitors Imported ---");
+    ride.numberOfVisitors();
+
+    System.out.println("\n--- Imported Ride History ---");
+    ride.printRideHistory();
+}
+
 }
