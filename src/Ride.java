@@ -1,6 +1,8 @@
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Iterator;
+import java.util.Comparator;
+import java.util.Collections;
 
 
 public class Ride implements RideInterface {
@@ -141,6 +143,10 @@ public Visitor removeVisitorFromQueue() {
             }
         }
         
-
+        public void sortHistory(java.util.Comparator<Visitor> comparator) {
+            java.util.Collections.sort(history, comparator);
+            System.out.println("History sorted using " + comparator.getClass().getSimpleName());
+        }
+        
     @Override public void runOneCycle() { }
 }

@@ -11,6 +11,7 @@ public class AssignmentTwo {
 
         new AssignmentTwo().partThree();
         new AssignmentTwo().partFourA();
+        new AssignmentTwo().partFourB();
 
     }
 
@@ -59,7 +60,25 @@ public class AssignmentTwo {
        //Use of the iterator      
         ride.printRideHistory();         
     }
-    public void partFourB(){ }
+    public void partFourB() {
+        Employee op = new Employee("Alish", "Ranabhat", 25, "E102", "Ride Operator", true);
+        Ride ride = new Ride("Hyper Coaster", 130, op);
+    
+        /
+        ride.addVisitorToHistory(new Visitor("Nehemia", "Shrestha", 19, "T301", false));
+        ride.addVisitorToHistory(new Visitor("Jason",   "Gurung",   20, "T302", false));
+        ride.addVisitorToHistory(new Visitor("Tom",     "Lama",     18, "T303", false));
+        ride.addVisitorToHistory(new Visitor("Sherly",  "Magar",    21, "T304", true));
+        ride.addVisitorToHistory(new Visitor("Ben",     "KC",       22, "T305", false));
+    
+        System.out.println("History BEFORE sort:");
+        ride.printRideHistory();  
+    
+        ride.sortHistory(new VisitorComparator()); 
+    
+        System.out.println("History AFTER sort (last, first, age):");
+        ride.printRideHistory();  
+    }
     public void partFive(){ }
     public void partSix(){ }
     public void partSeven(){ }
