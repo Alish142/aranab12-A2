@@ -74,6 +74,8 @@ public int getNumofCycles (){ return numOfCycles;}
     public String toString() {
         return "Ride[name=" + name + ", minHeightCm=" + minHeightCm + ", Operator =" + Operator  + "]";
     }
+
+    // Add vistors to the queue 
     @Override public boolean addVisitorToQueue(Visitor v) { 
 
         if (v == null) {
@@ -97,6 +99,7 @@ public int getNumofCycles (){ return numOfCycles;}
         
         return true; }
 
+        //Removing visitors from the queue
 
    @Override
 public Visitor removeVisitorFromQueue() {
@@ -113,7 +116,7 @@ public Visitor removeVisitorFromQueue() {
     return v;
     
 }
-
+//Printing the details in the queue 
     @Override public void printQueue() {
         if (waiting.isEmpty()){
             System.out.println("Queue is empty.");
@@ -130,6 +133,8 @@ public Visitor removeVisitorFromQueue() {
 
 
      }
+
+     //Adding visitors to the visitor hsitory 
     
      @Override
     public boolean addVisitorToHistory(Visitor v) {
@@ -151,6 +156,7 @@ public Visitor removeVisitorFromQueue() {
         return ok;
     }
 
+    //Checeking the information of visitors in history
     @Override
     public boolean checkVisitorFromHistory(Visitor v) {
         boolean found = history.contains(v);
@@ -162,13 +168,15 @@ public Visitor removeVisitorFromQueue() {
         return found;
     }
     
-
+// Lisitng the number of visitors 
     @Override public int numberOfVisitors() { 
         int n = history.size();
         System.out.println("Number of Visitor in history:" + n);      
         return n; }
 
 
+
+        //Print the histiry of rides 
         @Override
         public void printRideHistory() {
             if (history.isEmpty()) {
@@ -184,14 +192,18 @@ public Visitor removeVisitorFromQueue() {
             }
         }
         
+
+        // Printing the history in arranged way by names and age
         public void sortHistory(java.util.Comparator<Visitor> comparator) {
             if (history.isEmpty()){
                 System.out.println("Cannot Sort: history is empty.");
+                return;
             }
             java.util.Collections.sort(history, comparator);
             System.out.println("History sorted using " + comparator.getClass().getSimpleName());
         }
         
+
         @Override
         public void runOneCycle() {
             // Operator check
@@ -267,12 +279,13 @@ public Visitor removeVisitorFromQueue() {
                 System.out.println("Error exporting ride history to \"" + fileName + "\": " + e.getMessage());
             }
         }
-
+//importing file data ( reading files)
        public void importRideHistory(String fileName) {
     try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
         String line;
 
         while ((line = reader.readLine()) != null) {
+            if (line.trim().isEmpty()) continue;
         
             String[] parts = line.split(",");
 
